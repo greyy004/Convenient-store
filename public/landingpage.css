@@ -1,0 +1,477 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #c44536;
+  --dark: #1e1e1e;
+  --light: #ffffff;
+  --accent: #f9a826;
+  --bg-gray: #f5f5f5;
+  --text: #333333;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Navigation */
+.navbar {
+  background: var(--dark);
+  padding: 1.5rem 7%;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.nav-menu a {
+  color: var(--light);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+  color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #a83529 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 7% 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 60%;
+  height: 150%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+}
+
+.hero-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-image-container {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.hero-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text h1 {
+  font-family: "Oswald", sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--light);
+  line-height: 1;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero-text h1 span {
+  display: block;
+  color: var(--accent);
+}
+
+.hero-text p {
+  font-size: 1.3rem;
+  color: var(--light);
+  margin-bottom: 3rem;
+  line-height: 1.8;
+  opacity: 0.95;
+}
+
+.cta-group {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btn {
+  padding: 1.2rem 3rem;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-light {
+  background: var(--light);
+  color: var(--primary);
+}
+
+.btn-light:hover {
+  background: var(--accent);
+  color: var(--dark);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(249, 168, 38, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--light);
+  border: 3px solid var(--light);
+}
+
+.btn-outline:hover {
+  background: var(--light);
+  color: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* Products Section */
+.products {
+  padding: 7rem 7%;
+  background: var(--light);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--dark);
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 5rem;
+  opacity: 0.8;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.product-card {
+  background: var(--bg-gray);
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-bottom: 5px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(196, 69, 54, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.product-card:hover::before {
+  left: 100%;
+}
+
+.product-card:hover {
+  border-bottom-color: var(--primary);
+  transform: translateY(-15px);
+  box-shadow: 0 20px 50px rgba(196, 69, 54, 0.2);
+  background: var(--light);
+}
+
+.product-card:hover .product-icon {
+  transform: scale(1.05);
+}
+
+.product-card:hover .product-icon::after {
+  opacity: 0.3;
+}
+
+.product-icon {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  opacity: 0.7;
+  transition: opacity 0.4s;
+}
+
+.product-card h3 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dark);
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+/* Promo Banner */
+.promo {
+  background: linear-gradient(135deg, var(--accent) 0%, #fbb140 100%);
+  padding: 6rem 7%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 70%
+  );
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.promo-container {
+  position: relative;
+  z-index: 1;
+}
+
+.promo h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.promo p {
+  font-size: 1.3rem;
+  color: var(--dark);
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.promo .btn {
+  background: var(--dark);
+  color: var(--light);
+}
+
+.promo .btn:hover {
+  background: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+  background: #0a0a0a;
+  color: var(--light);
+  padding: 3rem 7%;
+  text-align: center;
+}
+
+footer p {
+  opacity: 0.6;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image-container {
+    height: 400px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-text h1 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .hero-text h1 {
+    font-size: 3rem;
+  }
+
+  .hero-text p {
+    font-size: 1.1rem;
+  }
+
+  .cta-group {
+    flex-direction: column;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .promo h2 {
+    font-size: 2.5rem;
+  }
+
+  .hero-image-container {
+    height: 300px;
+  }
+}
