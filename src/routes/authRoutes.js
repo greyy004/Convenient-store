@@ -3,9 +3,9 @@ const router = express.Router();
 import authController from '../controllers/authController.js';
 
 //Login Route
-router.get('/login', authController.getlogin);
+router.get('/login', authController.loginAuthentication);
 
 //Register Routes
-router.get('/register', authController.getregister);
+router.get('/register', authController.registerAuthentication);
 
 export default router;  

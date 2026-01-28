@@ -10,5 +10,9 @@ router.get('/contact',indexcontroller.getContactPage);
 
 router.get('/services',indexcontroller.getServicesPage);
 
+router.get('/login',indexcontroller.getLoginPage);
+
+router.get('/register',indexcontroller.getRegisterPage);
+
 
 export default router;

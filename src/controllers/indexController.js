@@ -18,6 +18,14 @@ const indexController = {
 
     getServicesPage: (req, res) => {
         res.sendFile(path.join(__dirname, 'public', 'services.html'));
+    },
+
+    getLoginPage: (req, res) => {
+        res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    },
+
+    getRegisterPage: (req, res) => {
+        res.sendFile(path.join(__dirname, 'public', 'register.html'));
     }
 };
 

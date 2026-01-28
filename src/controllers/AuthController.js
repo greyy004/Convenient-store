@@ -2,12 +2,15 @@ import path from 'path';
 const __dirname = path.resolve();
 
 const authController = {
-    getlogin: (req, res) => {
-        res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    LoginAuthentication: (req, res) => {
+        const { email, password } = req.body;
+        // Add logic for handling login
+
     },
 
-    getregister: (req, res) => {
-        res.sendFile(path.join(__dirname, 'public', 'register.html'));
+    RegisterAuthentication: (req, res) => {
+        const { username, email, password, confirmPassword } = req.body;
+        // Add logic for handling registration
     }
 };
 
