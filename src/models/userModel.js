@@ -8,7 +8,8 @@ import pool from '../config/db.js';
                     id SERIAL PRIMARY KEY,
                     name VARCHAR(100),
                     email VARCHAR(100) UNIQUE,
-                    password VARCHAR(255)
+                    password VARCHAR(255),
+                    is_admin BOOLEAN DEFAULT FALSE
                 )
             `;
             await pool.query(query);
