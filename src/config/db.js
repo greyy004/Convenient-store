@@ -1,14 +1,16 @@
-import { Sequelize } from "sequelize";
+import pkg from 'pg';
+const { Pool } = pkg;
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || "jaya_store",
-  process.env.DB_USER || "root",
-  process.env.DB_PASSWORD || "",
-  {
-    host: process.env.DB_HOST || "localhost",
-    dialect: "mysql",
-    logging: false,
-  }
-);
+const pool = new Pool({
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT
+});
 
-export default sequelize;
+pool.on('connect', () => {
+    console.log('Connected to the database');
+});
+
+export default pool;
