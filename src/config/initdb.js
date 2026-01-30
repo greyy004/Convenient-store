@@ -7,7 +7,7 @@ const initdb = async () => {
         await createUserTable();
         await createProductTable();
         await createOrderTable();
-        console.log('User table created or already exists.');
+        console.log('Tables created successfully.');
     } catch (err) {
         console.error('Error creating tables:', err);
     }
