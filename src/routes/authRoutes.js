@@ -1,12 +1,18 @@
 import express from 'express';
+import {
+    validateRegister,
+    validateLogin
+} from '../middlewares/middleware.js';
+import {
+    register,
+    login,
+    logout
+} from '../controllers/authController.js';
+
 const router = express.Router();
-import {authLoginMiddleware, authRegisterMiddleware} from '../middlewares/middleware.js'
-import {loginAuthentication, registerAuthentication}from '../controllers/authController.js';
 
-//Login Route
-router.post('/login', authLoginMiddleware ,loginAuthentication);
+router.post('/register', validateRegister, register);
+router.post('/login', validateLogin, login);
+router.post('/logout', logout);
 
-//Register Routes
-router.post('/register', authRegisterMiddleware ,registerAuthentication);
-
-export default router;  
+export default router;

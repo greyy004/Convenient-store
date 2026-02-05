@@ -1,40 +1,43 @@
-import path from 'path';
 import bcrypt from 'bcrypt';
-import { generateToken} from '../middlewares/middleware.js'
 import { getUserByEmail, createUser } from '../models/userModel.js';
-import { maxAge } from '../middlewares/middleware.js';
+import { generateToken, maxAge } from '../middlewares/middleware.js';
 
-const __dirname = path.resolve();
+export const register = async (req, res) => {
+    const { name, email, password } = req.body;
 
-    // Handle user registration
-    export const registerAuthentication= async (req, res) => {
-        const { username, email, password, confirmPassword } = req.body;
+    const password_hash = await bcrypt.hash(password, 10);
+    await createUser({ name, email, password_hash });
 
-       const existingUser = await getUserByEmail(email);
-       if(existingUser) {
-        return res.status(400).json({ message: 'User already exists' });
-       }
-       const hashedPassword = await bcrypt.hash(password, 10);
-       await createUser({username,email,hashedPassword });
-       res.status(201).json({ message: 'User registered successfully' });
+    res.status(201).json({ message: "User registered successfully" });
+};
+
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await getUserByEmail(email);
+    if (!user) {
+        return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    export const loginAuthentication= async (req, res) => {
-        // Handle user login
-        const { email, password } = req.body;
-        const existingUser = await getUserByEmail(email);
-        if (!existingUser) {
-            return res.status(400).json({ message: 'Invalid email or password' });
-        }
-        const isPasswordValid = await bcrypt.compare(password, existingUser.password);
-        if (!isPasswordValid) {
-            return res.status(400).json({ message: 'Invalid email or password' });
-        }
-        const token = generateToken({id: existingUser.id, is_admin: existingUser.is_admin});
-        res.cookie("jwt", token , {
-            httpOnly: true,
-            maxAge: maxAge*1000
-        });
-        res.status(200).send({id: existingUser.id});
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+        return res.status(400).json({ message: "Invalid credentials" });
     }
 
+    const token = generateToken({
+        id: user.id,
+        is_admin: user.is_admin
+    });
+    console.log(token);
+    res.cookie('jwt', token, {
+        httpOnly: true,
+        maxAge: maxAge * 1000
+    });
+
+    res.json({ message: "Login successful" });
+};
+
+export const logout = (req, res) => {
+    res.clearCookie('jwt');
+    res.json({ message: "Logged out" });
+};
