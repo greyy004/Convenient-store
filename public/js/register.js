@@ -27,12 +27,11 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         const response = await fetch('/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: name, email, password, confirmPassword })
+            body: JSON.stringify({ name, email, password, confirmPassword })
         });
-
+        if (!response.ok)
+            throw new Error(data.message || 'Registration failed');
         const data = await response.json();
-        if (!response.ok) throw new Error(data.message || 'Registration failed');
-
         alert('Registration successful! Please log in.');
         window.location.href = '/html/login.html';
 
