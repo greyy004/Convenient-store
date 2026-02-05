@@ -15,9 +15,13 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
         });
-        if (!response.ok) throw new Error(data.message || 'Login failed');
-        const data = await response.json();
 
+        const data = await response.json(); // parse JSON first
+
+        if (!response.ok) throw new Error(data.message || 'Login failed');
+
+        console.log('Login successful', data);
+        // redirect or do something with the token/data
     } catch (err) {
         console.error(err);
         alert(err.message);

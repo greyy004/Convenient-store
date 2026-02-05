@@ -29,9 +29,12 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, password, confirmPassword })
         });
+
+        const data = await response.json(); // parse JSON first
+
         if (!response.ok)
             throw new Error(data.message || 'Registration failed');
-        const data = await response.json();
+
         alert('Registration successful! Please log in.');
         window.location.href = '/html/login.html';
 

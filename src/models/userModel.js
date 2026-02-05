@@ -20,21 +20,18 @@ export const createUserTable = async () => {
 
 export const getUserByEmail = async (email) => {
     const result = await pool.query(
-        "SELECT * FROM users WHERE email = $1",
+        `SELECT id, name, email, password, is_admin
+         FROM users
+         WHERE email = $1`,
         [email]
     );
     return result.rows[0];
 };
-export const getUserByName = async (name)=>{
-    const result = await pool.query(
-        "SELECT * FROM users where name= $1",
-        [name]);
-    return result.rows[0];
-};
 
-export const createUser = async ({ name, email, password }) => {
+export const createUser = async ({ username, email, password_hash }) => {
     await pool.query(
-        "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
-        [name, email, password]
+        `INSERT INTO users (name, email, password)
+         VALUES ($1, $2, $3)`,
+        [username, email, password_hash]
     );
 };
