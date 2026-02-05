@@ -15,14 +15,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
         });
-
-        const data = await response.json();
         if (!response.ok) throw new Error(data.message || 'Login failed');
-
-        alert('Login successful!');
-        localStorage.setItem('token', data.token);
-        // redirect after login
-        window.location.href = '/dashboard';
+        const data = await response.json();
 
     } catch (err) {
         console.error(err);

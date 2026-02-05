@@ -25,6 +25,12 @@ export const getUserByEmail = async (email) => {
     );
     return result.rows[0];
 };
+export const getUserByName = async (name)=>{
+    const result = await pool.query(
+        "SELECT * FROM users where name= $1",
+        [name]);
+    return result.rows[0];
+};
 
 export const createUser = async ({ name, email, password }) => {
     await pool.query(
