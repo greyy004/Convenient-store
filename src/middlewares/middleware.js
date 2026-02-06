@@ -60,7 +60,7 @@ export const requireAuth = (req, res, next) => {
 
 // Admin guard
 export const requireAdmin = (req, res, next) => {
-    if (!req.user?.is_admin) {
+    if (!req.user.is_admin) {
         return res.status(403).json({ message: "Admin only" });
     }
     next();

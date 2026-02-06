@@ -1,6 +1,7 @@
 import express from 'express';
 import {getAdminDash } from '../controllers/adminController.js';
 const router = express.Router();
-router.post('/dashboard', getAdminDash);
+
+router.get('/dashboard', getAdminDash);
 
 export default router;

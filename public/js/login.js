@@ -21,8 +21,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         if (!response.ok) throw new Error(data.message || 'Login failed');
 
-        console.log('Login successful', data);
-
         if (!data.user) throw new Error('User data missing from response');
 
         // Redirect based on isadmin

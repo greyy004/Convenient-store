@@ -9,3 +9,4 @@ export const getUserDash = (req, res) => {
         path.join(__dirname, '../../public/html/userDashboard.html')
     );
 };
+

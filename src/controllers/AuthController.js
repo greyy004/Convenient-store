@@ -34,8 +34,9 @@ export const login = async (req, res) => {
         maxAge: maxAge * 1000
     });
 
-    res.json({user: user.id,
-        isadmin: user.is_admin
+    res.json({user: {
+        id: user.id,
+        is_admin: user.is_admin}
      });
 };
 
