@@ -13,15 +13,24 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const response = await fetch('/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password }),
+            credentials: 'include'
         });
 
-        const data = await response.json(); // parse JSON first
+        const data = await response.json();
 
         if (!response.ok) throw new Error(data.message || 'Login failed');
 
         console.log('Login successful', data);
-        // redirect or do something with the token/data
+
+        if (!data.user) throw new Error('User data missing from response');
+
+        // Redirect based on isadmin
+        if (data.user.is_admin === true) {
+            location.assign('/admin/dashboard');
+        } else {
+            location.assign('/user/dashboard');
+        }
     } catch (err) {
         console.error(err);
         alert(err.message);

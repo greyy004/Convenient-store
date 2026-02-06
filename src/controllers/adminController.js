@@ -4,8 +4,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const getUserDash = (req, res) => {
+export const getAdminDash = (req, res) => {
     res.sendFile(
-        path.join(__dirname, '../../public/html/userDashboard.html')
+        path.join(__dirname, '../../public/html/adminDashboard.html')
     );
 };

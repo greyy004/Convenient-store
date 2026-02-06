@@ -41,13 +41,12 @@ export const validateLogin = (req, res, next) => {
         return res.status(400).json({ message: "Email & password required" });
     }
 
-    next();
+    next(); 
 };
 
 // JWT protection
 export const requireAuth = (req, res, next) => {
-    const token = req.cookies?.jwt;
-
+    const token = req.cookies.jwt;
     if (!token) return res.status(401).json({ message: "Unauthorized" });
 
     try {

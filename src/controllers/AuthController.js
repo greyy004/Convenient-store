@@ -34,7 +34,9 @@ export const login = async (req, res) => {
         maxAge: maxAge * 1000
     });
 
-    res.json({ message: "Login successful" });
+    res.json({user: user.id,
+        isadmin: user.is_admin
+     });
 };
 
 export const logout = (req, res) => {
