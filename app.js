@@ -7,6 +7,7 @@ import initdb from './src/config/initdb.js';
 import pool from './src/config/db.js';
 import userRoutes from './src/routes/userRoutes.js';
 import adminRoutes from './src/routes/adminRoutes.js';
+import productRoutes from './src/routes/productRoutes.js';
 import {requireAdmin, requireAuth} from './src/middlewares/middleware.js'
 import cookieParser from 'cookie-parser';
 
@@ -31,7 +32,7 @@ app.get('/',(req,res)=>{
 app.use('/auth', authRoutes);
 app.use('/admin', requireAuth, requireAdmin, adminRoutes);
 app.use('/user', requireAuth, userRoutes);
-
+app.use('/product', requireAuth, requireAdmin, productRoutes);
 const startServer = async () => {
     try {
         // Initialize the database

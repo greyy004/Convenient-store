@@ -6,10 +6,10 @@ import pool from '../config/db.js';
             const query = `
                 CREATE TABLE IF NOT EXISTS products (
                     id SERIAL PRIMARY KEY,
-                    name VARCHAR(100),
+                    product_name VARCHAR(100),
                     description TEXT,
                     price DECIMAL(10, 2),
-                    stock_quantity INTEGER
+                    quantity INTEGER
                 )
             `;
             await pool.query(query);
@@ -17,3 +17,11 @@ import pool from '../config/db.js';
             console.error('Error creating product table:', err);
         }
     };
+
+
+    export const addProductByAdmin = async (product_name, description, quantity, price) => {
+    const result = await pool.query(
+        `INSERT INTO products(product_name, description, price, quantity) VALUES ($1,$2,$3,$4)`,
+        [product_name, description,price, quantity]
+    );
+};

@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     admin Dashboard
+    <form method="post" id ="addProductForm">
+        <h1>Create Product</h1>
+        <label for="product_name">Product Name:</label>
+        <input type="text" name="product_name" id="product_name" required>
+        <br>
+        <br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" min="1" required>
+        <br>
+        <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50"
+            placeholder="Enter detailed description here"></textarea>
+        <br>
+        <br>
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" min="10">
+        <br>
+        <br>
+        <button type="submit">Create Product</button>
+    </form>
+    <script src="../js/adminDashboard.js"></script>
 </body>
+
 </html>
