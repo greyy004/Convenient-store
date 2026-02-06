@@ -5,6 +5,12 @@ import {fileURLToPath} from 'url';
 import authRoutes from './src/routes/authRoutes.js';
 import initdb from './src/config/initdb.js';
 import pool from './src/config/db.js';
+import userRoutes from './src/routes/userRoutes.js';
+import adminRoutes from './src/routes/adminRoutes.js';
+import {requireAdmin, requireAuth} from './src/middlewares/middleware.js'
+import cookieParser from 'cookie-parser';
+
+
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -16,12 +22,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'public','html','index.html'));
 });
 
 app.use('/auth', authRoutes);
+app.use('/admin', requireAuth,requireAdmin, adminRoutes);
+app.use('/user', requireAuth, userRoutes);
 
 const startServer = async () => {
     try {

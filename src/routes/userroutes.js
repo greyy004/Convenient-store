@@ -1,14 +1,5 @@
 import express from 'express';
+import { getUserDash } from '../controllers/UserController.js';
 const router = express.Router();
-import userController from '../controllers/userController.js';
-
-//Get User Details
-router.get('/user/profile', userController.getUserProfile);
-
-//Update User Details
-router.put('/user/profile', userController.updateUserProfile);
-
-//Delete User
-router.delete('/user/:id', userController.deleteUser);
-
+router.get('/dashboard', getUserDash);
 export default router;
