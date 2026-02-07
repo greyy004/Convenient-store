@@ -1,15 +1,14 @@
 import {addProductByAdmin} from '../models/productModel.js';
 
 export const addProduct = async (req, res)=>{
-    const {product_name, description, quantity, price}=req.body;
+    const {product_name, description, price}=req.body;
     try{
-    await addProductByAdmin(product_name, description, quantity, price);
+    await addProductByAdmin(product_name, description, price);
     res.status(201).json({
             message: "Product added successfully",
             product: {
                 product_name,
                 description,
-                quantity,
                 price
             }
         });

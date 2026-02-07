@@ -35,3 +35,10 @@ export const createUser = async ({ username, email, password_hash }) => {
         [username, email, password_hash]
     );
 };
+
+export const UserCount = async () => {
+    const result = await pool.query(`
+        SELECT COUNT(*) FROM users where is_admin=false`
+    );
+    return result.rows[0].count;
+}
